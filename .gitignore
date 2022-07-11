@@ -10,9 +10,7 @@
 *.userosscache
 *.sln.docstates
 SQL/
-Backend/.DS_Store
-Backend/__pycache__/
-
+Backend/__pycache__
 # User-specific files (MonoDevelop/Xamarin Studio)
 *.userprefs
 
