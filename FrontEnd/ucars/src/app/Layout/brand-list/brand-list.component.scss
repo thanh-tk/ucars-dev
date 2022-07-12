@@ -35,6 +35,7 @@
 }
 .list-container{
     .list-item{
+
         .check-col{
             display: flex;
             align-items: baseline;
@@ -48,6 +49,12 @@
             .ant-divider{
                 height: 4.5em;
                 margin: 0 40px;
+                border-left-color: #5F5F5F;
+            }
+        }
+        &.even-row{
+            .brand-info .ant-divider{
+                border-left-color: #0FC97B;
             }
         }
     }

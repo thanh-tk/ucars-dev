@@ -35,7 +35,7 @@
     <div class="list-container">
         List Worked!
         <nz-list>
-            <nz-list-item *ngFor="let item of brandList" class="list-item">
+            <nz-list-item *ngFor="let item of brandList; index as i; let even = even" class="list-item" [ngClass]="{ 'even-row' : even }">
                 <div nz-row nzJustify="space-between" nzAlign="top" style="width: 100%">
                     <div nz-col nzSpan="1" class="check-col"><label nz-checkbox></label></div>
                     <div nz-col nzSpan="14" class="brand-info">
@@ -43,7 +43,7 @@
                             <div nz-col class="brand-thumbnail">
                                 <nz-avatar [nzSize]="64" [nzShape]="'square'" nzIcon="car"></nz-avatar>
                             </div>
-                            <div nz-col><nz-divider nzType="vertical"></nz-divider></div>
+                            <div nz-col ><nz-divider nzType="vertical" ></nz-divider></div>
                             <div nz-col class="brand-detail">{{item.NAME}}</div>
                         </div>
                     </div>
