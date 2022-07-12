@@ -1,3 +1,4 @@
+import sqlalchemy as sa
 from fastapi import Depends, FastAPI, status
 from sqlalchemy.orm import Session
 import crud, models, schemas
@@ -34,9 +35,36 @@ def get_db():
 def root():
     return {"message": "Hello World"}
 
-@app.post("/brand", status_code=status.HTTP_201_CREATED)
+@app.post("/brand/", status_code=status.HTTP_201_CREATED)
+def create_Brand(brand: schemas.BrandRequest):
+    session = Session(bind=engine, expire_on_commit=False)
+
+    brandDB = schemas.Brand(
+        id= 0,
+        name = brand.name,
+        logo = brand.logo,
+        status = brand.status,
+        description = brand.description,
+    )
+    print(brandDB.name, brandDB.status, brandDB.description)
+    session.execute(sa.text("CALL public.\"brand_Create\"( :param1, :param2, :param3, :param4)"), {
+    "param1": brandDB.name, 
+    "param2": brandDB.status, 
+    "param3": brandDB.description, 
+    "param4": brandDB.logo})
+       # grab the id given to the object from the database
+    name = brandDB.name
+
+    session.commit()
+    # close the session
+    session.close()
+      
+    # return the id
+    return f"created brand item with id {name}"
+
+@app.post("/img", status_code=status.HTTP_201_CREATED)
 def create_Brand():
-    return "Create brand"
+    return "Image uploaded"
 
 @app.get("/brand/{name}")
 def search_brand(name: str):

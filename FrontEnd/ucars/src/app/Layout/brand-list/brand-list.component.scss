@@ -128,6 +128,7 @@
             button {
                 font-weight: 500;
                 right: 0;
+                color: #232323;
                 /* Neutral/1 */
                 background: #FFFFFF;
                 /* Neutral/5 */
@@ -143,6 +144,60 @@
                 border-left-color: #0FC97B;
             }
         }
+    }
+}
+.modal-body{
+    .logo {
+        margin-block-end: 36px;
+        ::ng-deep .ant-upload {
+            position: relative;
+            width: 120px;
+            height: 120px;
+            // background: #FAFAFA;
+            border-radius: 50%;
+            div{
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+            .logo-placeholder {
+                text-align: center;
+                span {color: #8C8C8C;}
+            }
+        }
+        img {
+            width: 120px;
+            height: 120px;
+            // background: #FAFAFA;
+            border-radius: 50%;
+        }
+    } 
+    .form-content{
+        ::ng-deep label{
+            color: #8C8C8C;
+        }
+        input{
+            width: 220px;
+
+        }
+        .form-status{
+            .inactive{
+                svg{
+                    fill: #5F5F5F;
+                }
+            }
+            ::ng-deep .ant-select:has(.ant-select-selector):has(.ant-select-selection-item):has(.inactive){
+                background: #5F5F5F !important;
+            }
+        }
+        .ant-select{
+            width: 131px;
+            height: 34px;
+            background: #CEF7E2;
+            border-radius: 48px;
+        }
+
+        
     }
 }
 /* width */
