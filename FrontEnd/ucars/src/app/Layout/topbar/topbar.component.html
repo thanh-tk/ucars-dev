@@ -1,0 +1,50 @@
+<div ngClass="topbar-container">
+    <div nz-row nzJustify="end">
+        <div nz-col nzSpan="12"></div>
+        <div nz-col nzSpan="12">
+            <div nz-row nzJustify="end"> 
+                <div nz-col nzSpan="12"></div>
+                <div nz-col nzSpan="12">
+                    <div nz-row nzJustify="end" [nzGutter]="[15, 0]">
+                        <div nz-col nzOrder="1" nzSpan="2" style="display: flex; align-items: center; margin-inline-end: 8px;"><i nz-icon nzType="info-circle" nzTheme="outline" style="font-size: 21px;"></i></div>
+                        <div nz-col nzOrder="2" nzSpan="2" style="display: flex; align-items: center;"><i nz-icon nzType="bell" nzTheme="outline" style="font-size: 21px;"></i></div>
+                        <div nz-col nzOrder="3" nzSpan="8" >
+                            <div nz-row nzJustify="end">
+                                <div  nz-col nzSpan="8" >
+                                    <nz-avatar [nzSize]="32" nzIcon="car"></nz-avatar>
+                                </div>
+                                <div  nz-col nzSpan="15">
+                                    <a nz-dropdown nzTrigger="click" [nzDropdownMenu]="menu" style="color:#232323">
+                                        Admin
+                                        <i nz-icon nzType="down"></i>
+                                      </a>
+                                      <nz-dropdown-menu #menu="nzDropdownMenu">
+                                        <ul nz-menu>
+                                          <li nz-menu-item>1st menu item</li>
+                                          <li nz-menu-item>2nd menu item</li>
+                                          <li nz-menu-divider></li>
+                                          <li nz-menu-item nzDisabled>disabled menu item</li>
+                                          <li nz-submenu nzTitle="sub menu">
+                                            <ul>
+                                              <li nz-menu-item>3rd menu item</li>
+                                              <li nz-menu-item>4th menu item</li>
+                                            </ul>
+                                          </li>
+                                          <li nz-submenu nzDisabled nzTitle="disabled sub menu">
+                                            <ul>
+                                              <li nz-menu-item>3rd menu item</li>
+                                              <li nz-menu-item>4th menu item</li>
+                                            </ul>
+                                          </li>
+                                        </ul>
+                                      </nz-dropdown-menu>
+                                </div>
+                            </div>
+                           
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

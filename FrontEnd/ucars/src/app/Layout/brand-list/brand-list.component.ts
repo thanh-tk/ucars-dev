@@ -9,7 +9,7 @@ import { BrandService } from 'src/app/Service/brand.service';
 })
 export class BrandListComponent implements OnInit {
   sortList: Array<string> = ['All', 'Last Updated', 'Created'];
-  brandList: any;
+  brandList: brand[] = [];
   currentSelect: string = '';
   constructor(
     private _service: BrandService
@@ -20,7 +20,9 @@ export class BrandListComponent implements OnInit {
 
     this._service.getBrands()
       .subscribe(data => {
-        this.brandList = data;
+        // const reData = Object.keys(data).map(key: => ({type: key, value: data[key]}));
+        this.brandList = data as brand[];
+        this.brandList= this.brandList.concat(this.brandList, this.brandList, this.brandList)
         console.log("🚀 ~ file: brand-list.component.ts ~ line 24 ~ BrandListComponent ~ ngOnInit ~ data", data)
       });
   }

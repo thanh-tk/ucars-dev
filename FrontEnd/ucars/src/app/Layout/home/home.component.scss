@@ -1,3 +1,16 @@
-nz-content {
-    margin: 24px 16px 0;
+.main-container{
+    .list-container{
+        background-color: white;
+        nz-header {
+            background-color: inherit;
+            padding-inline: 16px;
+        }
+        nz-content {
+            background-color: inherit;
+            margin: 24px 16px 0;
+        }
+        nz-footer{
+            background-color: inherit
+        }
+    }
 }
