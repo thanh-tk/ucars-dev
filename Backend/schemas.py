@@ -25,3 +25,8 @@ class Brand(BrandBase):
     models: list[Model] = []
     class Config:
         orm_mode = True
+class BrandRequest(BaseModel):
+    name: str
+    status: int
+    logo: bytes | None
+    description: str | None = None

@@ -1,5 +1,7 @@
 import { HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
+import { brand } from '../Models/Brand.model';
 import { ApiService } from './api.service';
 
 const httpOptions ={
@@ -7,6 +9,7 @@ const httpOptions ={
 }
 
 const API_URL = 'brands/';
+const API_URL_CREATE_BRAND = 'brand/';
 
 
 @Injectable({
@@ -20,5 +23,16 @@ export class BrandService {
 
   getBrands(){
     return this._api.getTypeRequest(API_URL);
+  }
+
+  /** POST: add a new hero to the database */
+  createBrand(brand: brand) {
+    return this._api.postTypeRequest(API_URL_CREATE_BRAND, brand).subscribe((res: any) => {
+      if(res.access_token){
+
+      }
+    }
+       
+      );
   }
 }
