@@ -11,7 +11,7 @@ import {NzListModule}  from 'ng-zorro-antd/list'
 import { NzCheckboxModule } from 'ng-zorro-antd/checkbox';
 import { NzAvatarModule } from 'ng-zorro-antd/avatar';
 import { NzDividerModule } from 'ng-zorro-antd/divider';
-
+import { NzTypographyModule } from 'ng-zorro-antd/typography';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -27,6 +27,7 @@ import { AccountBookFill,
 } from '@ant-design/icons-angular/icons';
 import { BrandListComponent } from './Layout/brand-list/brand-list.component';
 import { HomeComponent } from './Layout/home/home.component';
+import { TopbarComponent } from './Layout/topbar/topbar.component';
 
 const icons: IconDefinition[] = [ 
   MenuUnfoldOutline, 
@@ -39,7 +40,8 @@ const icons: IconDefinition[] = [
     AppComponent,
     SidebarComponent,
     BrandListComponent,
-    HomeComponent
+    HomeComponent,
+    TopbarComponent
   ],
   imports: [
     BrowserModule,
@@ -56,6 +58,7 @@ const icons: IconDefinition[] = [
     NzCheckboxModule,
     NzDividerModule,
     NzAvatarModule,
+    NzTypographyModule,
     NzIconModule.forChild(icons),
   ],
   providers: [],

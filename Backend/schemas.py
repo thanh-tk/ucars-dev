@@ -1,3 +1,4 @@
+import datetime
 from pydantic import BaseModel
 
 class ModelBase(BaseModel):
@@ -12,12 +13,15 @@ class Model(ModelBase):
         orm_mode = True
 
 class BrandBase(BaseModel):
-    NAME: str
-    STATUS: int
+    name: str
+    status: int
+    logo: bytes | None
+    last_update: datetime.date | None
+    description: str | None = None
 class BrandCreate(BrandBase):
     pass
 class Brand(BrandBase):
-    ID: int
+    id: int
     models: list[Model] = []
     class Config:
         orm_mode = True

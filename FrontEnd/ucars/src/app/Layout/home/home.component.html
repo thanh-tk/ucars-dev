@@ -1,9 +1,10 @@
-<nz-layout>
+<nz-layout ngClass="main-container">
     <nz-sider [(nzCollapsed)]="isCollapsed" [nzTrigger]="null"><app-sidebar (sendDataToParent)="eventFromChild($event)"></app-sidebar></nz-sider>
-    <nz-layout>
-      <nz-header>Header</nz-header>
+    <nz-layout ngClass="list-container">
+      <nz-header><app-topbar></app-topbar></nz-header>
+      <nz-divider nzType="horizontal" ngClass="logo-divider" style="margin: unset;"></nz-divider>
       <nz-content><app-brand-list></app-brand-list></nz-content>
-      <nz-footer>Footer</nz-footer>
+      <!-- <nz-footer></nz-footer> -->
     </nz-layout>
 </nz-layout>
 
