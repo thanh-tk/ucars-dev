@@ -1,0 +1,23 @@
+<nz-layout>
+    <nz-sider [(nzCollapsed)]="isCollapsed" [nzTrigger]="null"><app-sidebar (sendDataToParent)="eventFromChild($event)"></app-sidebar></nz-sider>
+    <nz-layout>
+      <nz-header>Header</nz-header>
+      <nz-content><app-brand-list></app-brand-list></nz-content>
+      <nz-footer>Footer</nz-footer>
+    </nz-layout>
+</nz-layout>
+
+
+<!-- <div nz-row class="container">
+    <div nz-col nzSpan="5" class="col">
+       
+    </div>
+    <div nz-col nz-row nzSpan="19" class="col">
+        <div  nz-col>
+
+        </div>
+        <div  nz-col>
+         
+        </div>
+    </div>
+</div> -->

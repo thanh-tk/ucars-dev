@@ -1,0 +1,56 @@
+<div class="wrapper">
+  <div [ngClass]="isCollapsed?'header-collapsed':'header'">
+    <div [ngClass]="isCollapsed?'collapsed':'class2'">
+      <svg width="103" height="28" viewBox="0 0 103 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <g clip-path="url(#clip0_10_10431)">
+        <path d="M21.0102 27.7471H14.0426V25.1458C12.8992 26.6994 10.8268 27.8916 8.03981 27.8916C3.43051 27.9278 0.572021 24.9291 0.572021 20.1239V9.53809H7.46811V19.3291C7.46811 21.4245 8.79016 22.6891 10.7554 22.6891C12.7563 22.6891 14.0426 21.4607 14.0426 19.3291V9.53809H21.0102V27.7471Z" fill="#0FC97B"/>
+        <path d="M33.8737 9.32129C38.876 9.32129 42.5563 11.9587 43.5568 16.5471H36.1962C35.8032 15.4271 35.0171 14.7768 33.7308 14.7768C32.0514 14.7768 30.908 16.0774 30.908 18.6787C30.908 21.3161 32.0514 22.6168 33.7308 22.6168C35.0528 22.6168 35.8032 21.9665 36.1962 20.8465H43.5568C42.5563 25.3626 38.876 28.0723 33.8737 28.0723C27.9781 28.0723 23.8333 24.5316 23.8333 18.7148C23.8333 12.8619 27.9423 9.32129 33.8737 9.32129Z" fill="#0FC97B"/>
+        <path d="M53.7405 9.32129C56.5632 9.32129 58.5642 10.4413 59.5646 12.0671V9.53806H66.4965V27.7471H59.5646V25.2181C58.5284 26.8439 56.5275 27.9639 53.7405 27.9639C49.024 27.9639 45.3079 24.4232 45.3079 18.6064C45.3079 12.7897 49.024 9.32129 53.7405 9.32129ZM55.9558 14.849C53.9906 14.849 52.3469 16.1497 52.3469 18.6064C52.3469 21.0271 53.9906 22.4 55.9558 22.4C57.8853 22.4 59.5646 21.0632 59.5646 18.6064C59.5646 16.1858 57.8853 14.849 55.9558 14.849Z" fill="#0FC97B"/>
+        <path d="M77.358 27.7471H70.4262V9.53807H77.358V12.7535C78.8587 10.7665 81.1098 9.35742 83.7539 9.35742V16.1497H81.8244C78.9659 16.1497 77.358 16.9806 77.358 19.7987V27.7471Z" fill="#0FC97B"/>
+        <path d="M94.6873 28C89.1847 28 85.5044 25.2542 85.2186 21.6413H91.936C92.1147 22.8335 93.2223 23.4839 94.6516 23.4839C95.8307 23.4839 96.4739 22.9781 96.4739 22.3277C96.4739 19.6542 85.9332 21.8581 85.9332 15.1381C85.9332 11.9587 88.7917 9.32129 94.1513 9.32129C99.5467 9.32129 102.369 12.0671 102.834 15.68H96.581C96.3667 14.56 95.4734 13.8735 94.0084 13.8735C92.865 13.8735 92.2933 14.3071 92.2933 14.9935C92.2933 17.5948 102.87 15.4994 102.905 22.4361C102.941 25.5793 99.7968 28 94.6873 28Z" fill="#0FC97B"/>
+        <path d="M4.07334 6.72001C1.6079 6.72001 0 5.27485 0 3.43227C0 1.58969 1.6079 0.108398 4.07334 0.108398C6.50305 0.108398 8.11095 1.55356 8.11095 3.43227C8.11095 5.27485 6.50305 6.72001 4.07334 6.72001Z" fill="#0FC97B"/>
+        <path d="M15.5781 0H22.2598L19.1155 6.57548H12.4338L15.5781 0Z" fill="#0FC97B"/>
+        </g>
+        <defs>
+        <clipPath id="clip0_10_10431">
+        <rect width="102.941" height="28" fill="white"/>
+        </clipPath>
+        </defs>
+        </svg>        
+    </div>
+    <button nz-button nzType="primary" nzSize="small" (click)="_sendDataToParent('click')">
+      <i nz-icon [nzType]="isCollapsed ? 'menu-unfold' : 'menu-fold'"></i>
+    </button>
+  </div>
+  <div class="navigator">
+    <ul class="sidebar-container" nz-menu nzMode="inline" nzTheme="dark" [nzInlineCollapsed]="isCollapsed">
+      <li nzShape="round" nz-menu-item nz-tooltip nzTooltipPlacement="right" [nzTooltipTitle]="isCollapsed ? 'Navigation One' : ''"
+        nzSelected>
+        <i nz-icon nzType="car"></i>
+        <span>Car Brand</span>
+      </li>
+      <li nz-submenu nzTitle="Folder" nzIcon="folder">
+        <!-- <ul class="sub-item">
+          <li nz-menu-item>Option 5</li>
+          <li nz-menu-item>Option 6</li>
+          <li nz-submenu nzTitle="Submenu">
+            <ul>
+              <li nz-menu-item>Option 7</li>
+              <li nz-menu-item>Option 8</li>
+            </ul>
+          </li>
+        </ul> -->
+      </li>
+      <li nz-submenu nzTitle="Task" nzIcon="calendar">
+        <!-- <ul>
+          <li nz-menu-item>Option 9</li>
+          <li nz-menu-item>Option 10</li>
+          <li nz-menu-item>Option 11</li>
+        </ul> -->
+      </li>
+    </ul>
+  </div>
+  <div class="footer">
+
+  </div>
+</div>
