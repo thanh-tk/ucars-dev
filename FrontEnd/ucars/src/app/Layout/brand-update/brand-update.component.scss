@@ -2,7 +2,45 @@
     width: 50%;
     margin-inline-start: 3em;
     .logo {
+        @keyframes fade-in {
+            0% {
+              opacity: 0;
+            }
+            100% {
+              opacity: 0.8;
+            }
+          }
         margin-block-end: 36px;
+        // ::ng-deep .ant-upload-select-picture-card:hover::before{
+        //     content: "";
+        //     width: 120px !important;
+        //     animation: fade-in 0.2s cubic-bezier(0.390, 0.575, 0.565, 1.000) both;
+        //     height: 120px !important;
+        //     background: #232323;
+        //     z-index: 1;
+        //     position: absolute;
+        //     left: 0;
+        //     border-radius: 50%;
+        //     visibility: visible;
+        // }
+        .logo-content{
+            .upload-btn{
+                opacity: 0;
+                width: 120px;
+                height: 120px;
+                border-radius: 50%;
+                z-index: 99;
+                background: #232323;
+                color: #FFFFFF;
+                position: absolute;
+                font-size: 16px;
+                font-weight: 600;
+                white-space: pre-wrap;
+            }
+            .upload-btn:hover{
+                animation: fade-in 0.1s both;
+            }
+        }
         ::ng-deep .ant-upload {
             position: relative;
             width: 120px;
@@ -18,13 +56,16 @@
                 text-align: center;
                 span {color: #8C8C8C;}
             }
+            
         }
         img {
             width: 120px !important;
             height: 120px !important;
             // background: #FAFAFA;
             border-radius: 50%;
+            position: absolute;
         }
+       
     } 
     .form-content{
         .ant-col:not(.ant-form-item-label){

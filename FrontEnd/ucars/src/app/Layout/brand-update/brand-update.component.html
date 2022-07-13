@@ -15,7 +15,7 @@
                 <div nz-row nzJustify="center" nzAlign="bottom">
                     <div nz-col nzSpan="24">
                         <nz-upload 
-                            nzAction="http://localhost:8000/img"
+                            nzAction="http://localhost:8000/api/v1/util/img"
                             nzName="avatar"
                             nzListType="picture-card"
                             [nzShowUploadList]="false"
@@ -23,6 +23,7 @@
                             [nzBeforeUpload]="beforeUpload"
                             (nzChange)="handleChange($event)"
                             [nzDisabled]="!isEdit ? true : false"
+                            ngClass="logo-content"
                         >
                         <ng-container *ngIf="false">
                             <span ngClass="logo-placeholder">
@@ -31,7 +32,10 @@
                                 <span>Brand Logo</span>
                             </span>
                         </ng-container>
-                        <img *ngIf="avatarUrl || data.logo" [src]="avatarUrl ? avatarUrl : data.logo" style="width: 100%"/>
+                        <button nz-button ngClass="upload-btn" *ngIf="isEdit ? true : false">
+                                Change Logo
+                        </button>
+                          <img *ngIf="avatarUrl || data.logo" [src]="avatarUrl ? avatarUrl : data.logo" style="width: 100%"/>
                         </nz-upload>
                     </div>
                 </div>
