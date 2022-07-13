@@ -6,7 +6,6 @@ from fastapi_sqlalchemy import db
 
 from core.schemas import schemas
 from core.services import model_crud
-from core.database.database import engine
 from v1.api.base import get_db
 
 router = APIRouter()
