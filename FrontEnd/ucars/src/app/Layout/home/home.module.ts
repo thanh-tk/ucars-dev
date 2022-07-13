@@ -1,5 +1,6 @@
 import { NgZorroAntdModule } from 'src/app/ng-zorro-antd-module.module';
 
+import { AppRoutingModule } from '../../app-routing.module';
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 
@@ -14,6 +15,7 @@ import { HomeComponent } from './home.component';
   ],
   imports: [
     CommonModule,
+    AppRoutingModule,
     TobarModule,
     NgZorroAntdModule,
     BrandListModule,

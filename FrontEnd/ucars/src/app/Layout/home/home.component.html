@@ -3,7 +3,10 @@
     <nz-layout ngClass="list-container">
       <nz-header><app-topbar></app-topbar></nz-header>
       <nz-divider nzType="horizontal" ngClass="logo-divider" style="margin: unset;"></nz-divider>
-      <nz-content><app-brand-list></app-brand-list></nz-content>
+      <nz-content>
+        <router-outlet></router-outlet>
+        <!-- <app-brand-list></app-brand-list> -->
+    </nz-content>
       <!-- <nz-footer></nz-footer> -->
     </nz-layout>
 </nz-layout>
