@@ -9,7 +9,10 @@ const httpOptions ={
 }
 
 const API_URL = 'brands/';
-const API_URL_CREATE_BRAND = 'brand/';
+const API_URL_CREATE_BRAND = 'create-brand/';
+const API_URL_UPDATE_BRAND = 'update-brand/';
+const API_URL_DELETE_BRAND = 'delete-brand/';
+const API_URL_GET_BRAND = 'brand/';
 
 
 @Injectable({
@@ -24,10 +27,24 @@ export class BrandService {
   getBrands(){
     return this._api.getTypeRequest(API_URL);
   }
+  getBrand(id: number){
+    return this._api.getBrandInfoRequest(API_URL_GET_BRAND, id);
+  }
 
-  /** POST: add a new hero to the database */
+  /** POST: add a new brand to the database */
   createBrand(brand: brand) {
     return this._api.postTypeRequest(API_URL_CREATE_BRAND, brand).subscribe((res: any) => {
+      return res
+    });
+  }
+  /** POST: update a  brand to the database */
+  updateBrand(brand: brand) {
+    return this._api.postTypeRequest(API_URL_UPDATE_BRAND, brand).subscribe((res: any) => {
+      return res
+    });
+  }
+  deleteBrand(id: number) {
+    return this._api.deleteBrandRequest(API_URL_DELETE_BRAND, id).subscribe((res: any) => {
       return res
     });
   }
