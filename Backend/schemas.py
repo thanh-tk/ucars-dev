@@ -22,6 +22,7 @@ class BrandCreate(BrandBase):
     pass
 class Brand(BrandBase):
     id: int
+    is_delete: int
     models: list[Model] = []
     class Config:
         orm_mode = True
@@ -30,3 +31,11 @@ class BrandRequest(BaseModel):
     status: int
     logo: bytes | None
     description: str | None = None
+class BrandUpdateRequest(BaseModel):
+    id: int
+    name: str
+    status: int
+    logo: bytes | None
+    description: str | None = None
+class BrandDeleteRequest(BaseModel):
+    id: int
