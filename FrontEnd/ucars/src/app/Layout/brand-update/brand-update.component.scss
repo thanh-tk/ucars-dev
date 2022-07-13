@@ -1,0 +1,123 @@
+.page-body{
+    width: 50%;
+    margin-inline-start: 3em;
+    .logo {
+        margin-block-end: 36px;
+        ::ng-deep .ant-upload {
+            position: relative;
+            width: 120px;
+            height: 120px;
+            // background: #FAFAFA;
+            border-radius: 50%;
+            div{
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+            .logo-placeholder {
+                text-align: center;
+                span {color: #8C8C8C;}
+            }
+        }
+        img {
+            width: 120px !important;
+            height: 120px !important;
+            // background: #FAFAFA;
+            border-radius: 50%;
+        }
+    } 
+    .form-content{
+        .ant-col:not(.ant-form-item-label){
+            height: 88px;
+        }
+        .preview-field{
+            margin-block-start: 0.5em;
+            font-weight: 600;
+            font-size: 14px;
+        }
+        ::ng-deep label{
+            color: #8C8C8C;
+        }
+        input{
+            width: 220px;
+            border-radius: 5px;
+        }
+        textarea{
+            border-radius: 5px;
+        }
+        .form-status{
+            ::ng-deep .ant-row{
+                width: 99px;
+                .inactive{
+                    font-weight: 500;
+                    svg{
+                        margin-inline-end: 5px;
+                    }
+                }
+            }
+
+            ::ng-deep .ant-select:has(.ant-select-selector):has(.ant-select-selection-item):has(.inactive){
+                background: #FAFAFA !important;
+            }
+        }
+        .ant-select{
+            width: 131px;
+            height: 34px;
+            background: #CEF7E2;
+            border-radius: 48px;
+            .active{
+                color: #1F7B4D;
+            }
+        }
+        .ant-select:not(.active){
+            background: #FAFAFA;
+
+        }
+
+        
+    }
+}
+.back-btn{
+    
+    height: 62px;
+    background-color: transparent;
+    color: #2F465F;
+    border: none;
+    border-radius: 5px;
+    box-shadow: none;
+    font-weight: 600;
+    font-size: 24px;
+    padding-left: 0;
+    margin-block-end: 24px;
+    span{
+        text-decoration: underline;
+        text-align: left;
+    }
+}
+.sumit-btn{
+    
+    height: 40px;
+    background-color: #0F5EDD;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    font-size: 14px;
+    margin-block-start: 5em;
+    margin-inline-end: 2em;
+}
+.delete-btn{
+    
+    height: 40px;
+    background: red;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    font-size: 14px;
+    margin-block-start: 5em;
+}
+.font-w600{
+    font-weight: 600;
+}
+.font-s14{
+    font-size: 14px;
+}

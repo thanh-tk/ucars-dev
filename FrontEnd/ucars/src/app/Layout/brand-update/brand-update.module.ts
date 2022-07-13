@@ -4,22 +4,24 @@ import { NgZorroAntdModule } from 'src/app/ng-zorro-antd-module.module';
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import {RouterModule} from '@angular/router';
 
-import { BrandModalUpdateComponent } from './brand-modal-update.component';
+import { BrandUpdateComponent } from './brand-update.component';
 
 @NgModule({
   declarations: [
-    BrandModalUpdateComponent
+    BrandUpdateComponent
   ],
   imports: [
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
-    NgZorroAntdModule
+    NgZorroAntdModule,
+    RouterModule
 
   ],
   exports: [
-    BrandModalUpdateComponent
+    BrandUpdateComponent
   ],
   providers: [{provide: NzMessageService }],
 })
