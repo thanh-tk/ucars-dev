@@ -26,13 +26,13 @@ Basic field names: Name, Logo, Description, etc.
 **Figma :  
 https://www.figma.com/file/b3DQkzOpqyYpxkLpg5TO8N/Dev---Test?node-id=23%3A50585
 ---
-####Evaluation
+#### Evaluation
 *Evaluation will be based on:
 - Schema design
 - Code readability & maintainability
 - Error handling
 - Version control (git)
 
-####Bonus:
+#### Bonus:
 - Dockerization
 - Test cases
