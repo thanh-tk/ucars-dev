@@ -5,6 +5,9 @@ import { NgZorroAntdModule } from 'src/app/ng-zorro-antd-module.module';
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import {RouterModule} from '@angular/router';
+
+import { BrandModalUpdateModule } from '../brand-update/brand-update.module';
 
 import { BrandListComponent } from './brand-list.component';
 
@@ -14,9 +17,11 @@ import { BrandListComponent } from './brand-list.component';
   ],
   imports: [
     CommonModule,
+    RouterModule,
     NgZorroAntdModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    BrandModalUpdateModule
   ],
   exports: [
     BrandListComponent
