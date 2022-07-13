@@ -1,12 +1,11 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { NzMessageService } from 'ng-zorro-antd/message';
 import { NzUploadFile } from 'ng-zorro-antd/upload';
 import { Observable } from 'rxjs/internal/Observable';
 import { Observer } from 'rxjs/internal/types';
 import { brand } from 'src/app/Models/Brand.model';
-
 import { BrandService } from 'src/app/Service/brand.service';
-import { NzMessageService } from 'ng-zorro-antd/message';
 
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 
 @Component({
@@ -17,7 +16,7 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 
 export class BrandListComponent implements OnInit {
 
-  @Output() sendDataToParent = new EventEmitter();
+  openUpdateModal: brand = new brand;
   
   sortList: Array<string> = ['All', 'Last Updated', 'Brand Name', 'Number of Models'];
   brandList: brand[] = [];
@@ -26,7 +25,8 @@ export class BrandListComponent implements OnInit {
 
   currentSelect: string = '';
   createModal: boolean = false;
-
+  updateModal: boolean = false;
+  
   loading = false;
   avatarUrl?: string
   previewImage: string | undefined = '';
@@ -65,17 +65,22 @@ export class BrandListComponent implements OnInit {
     this.createModal = true;
   }
 
-  handleCancel(){
+  handleCancelCreateModal(){
     this.createModal = false;
   }
-
-  handleOk(){
+  
+  handleOkCreateModal(){
     let b = this.form?.value;
     this.createModal = false;
   }
+  handleCancelUpdateModal(){
+    this.updateModal = false;
+  }
 
-  handleView(){
-   
+  handleView(id: number){
+    const selectBrand = this.brandList.find(brand => brand.id === id);
+    this.updateModal = true;
+    selectBrand && (this.openUpdateModal = selectBrand);
   }
 
   handleSubmit(){

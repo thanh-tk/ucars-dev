@@ -1,51 +1,91 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { NzMessageService } from 'ng-zorro-antd/message';
 import { NzUploadFile } from 'ng-zorro-antd/upload';
 import { Observable, Observer } from 'rxjs';
+import { brand } from 'src/app/Models/Brand.model';
+
+import { ActivatedRoute } from '@angular/router';
+import { Router } from '@angular/router';
+import { BrandService } from 'src/app/Service/brand.service';
 
 @Component({
-  selector: 'app-brand-modal-update',
-  templateUrl: './brand-modal-update.component.html',
-  styleUrls: ['./brand-modal-update.component.scss']
+  selector: 'app-brand-update',
+  templateUrl: './brand-update.component.html',
+  styleUrls: ['./brand-update.component.scss']
 })
-export class BrandModalUpdateComponent implements OnInit {
+export class BrandUpdateComponent implements OnInit {
+  data: brand = new brand;
+  @Input() showModal: boolean = false;
+  @Output() hideModal = new EventEmitter();
 
-  openModal: boolean = false;
   loading = false;
+  isEdit = false;
   avatarUrl?: string
   statusList: Array<string> = ['Inactive', 'Active'];
   form!: FormGroup;
+
+
   constructor(
     private message: NzMessageService,
     public _fb : FormBuilder,
+    private Actroute: ActivatedRoute,
+    private router: Router,
+    private _service: BrandService,
   ) { }
 
   ngOnInit(): void {
-    this.form = this._fb.group({
-      name: '',
-      description: '',
-      logo: '',
-      status: '',
-    });
+    this.fetchBrandInfo()
   }
 
+  fetchBrandInfo(){
+    const id = this.Actroute.snapshot.paramMap.get('id');
+    this._service.getBrand(Number(id))
+    .subscribe(data => {
+      this.data = (data as brand);
+    });
+    this.form = this._fb.group({
+      name: this.data.name,
+      description: this.data.description,
+      logo: this.data.logo,
+      status: this.data.status,
+    });
+  }
   handleCancel(){
-    this.openModal = false;
+    this.showModal = false;
+    this.hideModal.emit(false);
   }
 
   handleOk(){
-    this.openModal = false;
+    this.showModal = false;
+    this.hideModal.emit(false);
+  }
+
+  handleEdit(){
+    this.isEdit = true;
+  }
+
+  handleDelete(){
+
+    this._service.deleteBrand(this.data.id);
+    this.message.info('Brand Delete Successfully!', {
+      nzDuration: 10000
+    });
+    this.isEdit = false;
+    this.router.navigateByUrl('/brandslist');
   }
 
   handleSubmit(){
-    let b = {...this.form?.value, logo: this.avatarUrl};
+    let b = {...this.form?.value, logo: this.avatarUrl ?? this.data.logo, id: this.data.id};
 
-    //this._service.createBrand(b);
-    this.message.error('Brand Create Successfully!', {
+    this._service.updateBrand(b);
+    this.message.success('Brand Create Successfully!', {
       nzDuration: 10000
     });
+    this.isEdit = false;
+    this.fetchBrandInfo();
   }
+
 
   //HELPER FUNCTIONS *----------------------------------------------------------------
   beforeUpload = (file: NzUploadFile, _fileList: NzUploadFile[]): Observable<boolean> =>

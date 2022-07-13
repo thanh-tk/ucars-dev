@@ -27,10 +27,10 @@
       <li nzShape="round" nz-menu-item nz-tooltip nzTooltipPlacement="right" [nzTooltipTitle]="isCollapsed ? 'Navigation One' : ''"
         nzSelected>
         <i nz-icon nzType="car"></i>
-        <span>Car Brand</span>
+        <span><a [routerLink]="''"> Car Brand</a></span>
       </li>
       <li nz-submenu nzTitle="Folder" nzIcon="folder">
-        <!-- <ul class="sub-item">
+        <ul class="sub-item">
           <li nz-menu-item>Option 5</li>
           <li nz-menu-item>Option 6</li>
           <li nz-submenu nzTitle="Submenu">
@@ -39,14 +39,14 @@
               <li nz-menu-item>Option 8</li>
             </ul>
           </li>
-        </ul> -->
+        </ul>
       </li>
       <li nz-submenu nzTitle="Task" nzIcon="calendar">
-        <!-- <ul>
+        <ul>
           <li nz-menu-item>Option 9</li>
           <li nz-menu-item>Option 10</li>
           <li nz-menu-item>Option 11</li>
-        </ul> -->
+        </ul>
       </li>
     </ul>
   </div>

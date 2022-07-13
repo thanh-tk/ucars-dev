@@ -10,6 +10,7 @@ class Brand(Base):
     logo = Column("LOGO",LargeBinary)
     last_update = Column("LAST_UPDATE",DateTime)
     description = Column("DESCRIPTION",Text)
+    is_delete = Column("IS_DELETE",Integer)
     models = relationship("Model", back_populates="ownerBrand")
 
 class Model(Base):

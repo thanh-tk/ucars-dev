@@ -1,5 +1,6 @@
+from requests import session
 import sqlalchemy as sa
-from fastapi import Depends, FastAPI, status
+from fastapi import Depends, FastAPI, HTTPException, status
 from sqlalchemy.orm import Session
 import crud, models, schemas
 from database import SessionLocal, engine
@@ -35,40 +36,55 @@ def get_db():
 def root():
     return {"message": "Hello World"}
 
-@app.post("/brand/", status_code=status.HTTP_201_CREATED)
+@app.post("/create-brand/", status_code=status.HTTP_201_CREATED)
 def create_Brand(brand: schemas.BrandRequest):
-    session = Session(bind=engine, expire_on_commit=False)
-
-    brandDB = schemas.Brand(
+    brandDB = schemas.BrandRequest(
         id= 0,
         name = brand.name,
         logo = brand.logo,
         status = brand.status,
         description = brand.description,
     )
+    session = Session(bind=engine, expire_on_commit=False)
+    crud.create_Brand(session, brandDB)
+    session.close()
     
-    print(brandDB.name, brandDB.status, brandDB.description)
-    session.execute(sa.text("CALL public.\"brand_Create\"( :param1, :param2, :param3, :param4)"), {
-    "param1": brandDB.name, 
-    "param2": brandDB.status, 
-    "param3": brandDB.description, 
-    "param4": brandDB.logo})
+@app.post("/update-brand/", status_code=status.HTTP_200_OK)
+def update_Brand(brand: schemas.BrandUpdateRequest):
 
-    name = brandDB.name
-
-    session.commit()
-
+    brandDB = schemas.BrandUpdateRequest(
+            id= brand.id,
+            name = brand.name,
+            logo = brand.logo,
+            status = brand.status,
+            description = brand.description,
+        )    
+    session = Session(bind=engine, expire_on_commit=False)
+    crud.update_Brand(session, brandDB)
     session.close()
 
-    return f"created brand item with id {name}"
 
+@app.post("/delete-brand/{id}", status_code=status.HTTP_200_OK)
+def delete_brand(id: int):
+    brandDB = schemas.BrandDeleteRequest(
+        id= id
+    )
+    session = Session(bind=engine, expire_on_commit=False)
+    crud.delete_brand(session, brandDB)
+    session.close()
+    
 @app.post("/img", status_code=status.HTTP_201_CREATED)
 def create_Brand():
     return "Image uploaded"
 
-@app.get("/brand/{name}")
-def search_brand(name: str):
-    return "Search brand with id " + name
+@app.get("/brand/{id}", response_model=schemas.Brand)
+def search_brand(id: int, db: Session = Depends(get_db)):
+    print(id)
+    brands = crud.get_Brand(db, id)
+
+    if not id:
+        raise HTTPException(status_code=404, detail=f" item with id {id} not found")
+    return brands
 
 @app.get("/brands/", response_model=list[schemas.Brand])
 def search_brand(skip: int=0, limit: int=100, db: Session = Depends(get_db)):

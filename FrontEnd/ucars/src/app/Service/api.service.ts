@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { map } from 'rxjs/operators';
 
@@ -13,6 +13,12 @@ export class ApiService {
 
   getTypeRequest(url: string) {
     return this.httpClient.get(this.REST_API_SERVER + url).pipe(map(res => { return res}));
+  }
+  getBrandInfoRequest(url: string, id: number) {
+    return this.httpClient.get(this.REST_API_SERVER + url + id).pipe(map(res => { return res}));
+  }
+  deleteBrandRequest(url: string, id: number) {
+    return this.httpClient.post(this.REST_API_SERVER + url + id, undefined).pipe(map(res => { return res}));
   }
   postTypeRequest(url: string, payload: any) {
     return this.httpClient.post(this.REST_API_SERVER + url, payload).pipe(map(res => { return res}));
