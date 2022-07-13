@@ -1,11 +1,9 @@
-import { NgModule } from '@angular/core';
+import { NgZorroAntdModule } from 'src/app/ng-zorro-antd-module.module';
+
 import { CommonModule } from '@angular/common';
+import { NgModule } from '@angular/core';
+
 import { SidebarComponent } from './sidebar.component';
-
-
-import { NzMenuModule  } from 'ng-zorro-antd/menu';
-import { NzToolTipModule  } from 'ng-zorro-antd/tooltip';
-import { NzIconModule } from 'ng-zorro-antd/icon';
 
 @NgModule({
   declarations: [
@@ -13,9 +11,7 @@ import { NzIconModule } from 'ng-zorro-antd/icon';
   ],
   imports: [
     CommonModule,
-    NzMenuModule,
-    NzToolTipModule,
-    NzIconModule
+    NgZorroAntdModule,
   ],
   exports: [
     SidebarComponent,

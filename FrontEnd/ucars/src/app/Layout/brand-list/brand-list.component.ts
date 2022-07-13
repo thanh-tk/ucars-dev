@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { NzUploadFile } from 'ng-zorro-antd/upload';
 import { Observable } from 'rxjs/internal/Observable';
 import { Observer } from 'rxjs/internal/types';
@@ -6,7 +6,9 @@ import { brand } from 'src/app/Models/Brand.model';
 
 import { BrandService } from 'src/app/Service/brand.service';
 import { NzMessageService } from 'ng-zorro-antd/message';
+
 import { FormBuilder, FormGroup } from '@angular/forms';
+
 @Component({
   selector: 'app-brand-list',
   templateUrl: './brand-list.component.html',
@@ -14,10 +16,14 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 })
 
 export class BrandListComponent implements OnInit {
-  sortList: Array<string> = ['All', 'Last Updated', 'Created'];
-  brandList: brand[] = [];
 
+  @Output() sendDataToParent = new EventEmitter();
+  
+  sortList: Array<string> = ['All', 'Last Updated', 'Brand Name', 'Number of Models'];
+  brandList: brand[] = [];
+  fillterBrandList: brand[] = [];
   statusList: Array<string> = ['Inactive', 'Active'];
+
   currentSelect: string = '';
   createModal: boolean = false;
 
@@ -25,18 +31,18 @@ export class BrandListComponent implements OnInit {
   avatarUrl?: string
   previewImage: string | undefined = '';
   previewVisible = false;
-  
+  imagePath: string[] = [];
   form!: FormGroup;
 
   constructor(
     private _service: BrandService,
-    // private msg: NzMessageService
-    public fb : FormBuilder
+    private message: NzMessageService,
+    public _fb : FormBuilder,
   ) { }
 
   ngOnInit(): void {
     this.currentSelect = this.sortList[0];
-    this.form = this.fb.group({
+    this.form = this._fb.group({
       name: '',
       description: '',
       logo: '',
@@ -44,12 +50,15 @@ export class BrandListComponent implements OnInit {
     });
     this._service.getBrands()
       .subscribe(data => {
-        this.brandList = data as brand[];
+        this.brandList = (data as brand[]);//.map((item) => {return {...item, logo: this._sanitizer.bypassSecurityTrustResourceUrl(item.logo).toString()}});
+
+        this.fillterBrandList= data as brand[];
       });
   }
 
-  _OnItemClick(item: string): void {
+  handleSort(item: string): void {
     this.currentSelect = item;
+    this.fillterBrandList = this.sortingList(item)
   }
 
   _AddBrand(){
@@ -65,23 +74,60 @@ export class BrandListComponent implements OnInit {
     this.createModal = false;
   }
 
+  handleView(){
+   
+  }
+
   handleSubmit(){
     let b = {...this.form?.value, logo: this.avatarUrl};
 
     this._service.createBrand(b);
+    this.message.error('Brand Create Successfully!', {
+      nzDuration: 10000
+    });
   }
 
+  filterItem(value: string){
+    let copyList = [...this.brandList]
+    if(!value) {
+      this.fillterBrandList = copyList
+    } else {
+      this.fillterBrandList = copyList.filter(item => item.name.toLowerCase().indexOf(value.toLowerCase()) > -1);
+    }
+  }
+
+  //HELPER FUNCTIONS *----------------------------------------------------------------
+  sortingList(value: string){
+    
+    let inData = [...this.fillterBrandList]
+    switch (value) {
+      case 'All':
+        return this.brandList
+      case 'Last Updated':
+        return inData.sort((a, b) => (a.last_update) < (new Date(b.last_update)) ? 1 : -1 )
+      case 'Brand Name':
+        return inData.sort((a, b) => a.name.localeCompare(b.name) ? 1 : -1)
+      case 'Number of Models':
+        return inData.sort((a, b) => a.models.length < b.models.length ? 1 : -1 ) 
+      default:
+        return this.brandList
+    }
+  }
   beforeUpload = (file: NzUploadFile, _fileList: NzUploadFile[]): Observable<boolean> =>
   new Observable((observer: Observer<boolean>) => {
     const isJpgOrPng = file.type === 'image/jpeg' || file.type === 'image/png';
     if (!isJpgOrPng) {
-      // this.msg.error('You can only upload JPG file!');
+      this.message.error('You can only upload JPG file!', {
+        nzDuration: 10000
+      });
       observer.complete();
       return;
     }
     const isLt2M = file.size! / 1024 / 1024 < 2;
     if (!isLt2M) {
-      // this.msg.error('Image must smaller than 2MB!');
+      this.message.error('Image must smaller than 2MB!', {
+        nzDuration: 10000
+      });
       observer.complete();
       return;
     }
@@ -108,7 +154,7 @@ export class BrandListComponent implements OnInit {
         });
         break;
       case 'error':
-        // this.msg.error('Network error');
+        this.message.error('Network error');
         this.loading = false;
         break;
     }
