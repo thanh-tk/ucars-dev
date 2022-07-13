@@ -46,20 +46,20 @@ def create_Brand(brand: schemas.BrandRequest):
         status = brand.status,
         description = brand.description,
     )
+    
     print(brandDB.name, brandDB.status, brandDB.description)
     session.execute(sa.text("CALL public.\"brand_Create\"( :param1, :param2, :param3, :param4)"), {
     "param1": brandDB.name, 
     "param2": brandDB.status, 
     "param3": brandDB.description, 
     "param4": brandDB.logo})
-       # grab the id given to the object from the database
+
     name = brandDB.name
 
     session.commit()
-    # close the session
+
     session.close()
-      
-    # return the id
+
     return f"created brand item with id {name}"
 
 @app.post("/img", status_code=status.HTTP_201_CREATED)

@@ -28,11 +28,7 @@ export class BrandService {
   /** POST: add a new hero to the database */
   createBrand(brand: brand) {
     return this._api.postTypeRequest(API_URL_CREATE_BRAND, brand).subscribe((res: any) => {
-      if(res.access_token){
-
-      }
-    }
-       
-      );
+      return res
+    });
   }
 }

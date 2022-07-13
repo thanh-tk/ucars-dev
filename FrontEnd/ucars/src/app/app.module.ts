@@ -8,6 +8,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
 
 import { HomeModule } from './Layout/home/home.module';
+
 @NgModule({
   declarations: [
     AppComponent,
