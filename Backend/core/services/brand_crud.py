@@ -1,10 +1,8 @@
 import sqlalchemy as sa
-import models, schemas
+from core.models import models
+from core.schemas import schemas
 from sqlalchemy.orm import Session
-from fastapi import Depends, FastAPI, HTTPException, status
-from database import SessionLocal, engine
-
-session = Session(bind=engine, expire_on_commit=False)
+from fastapi import  HTTPException, status
 
 def get_Brand(db: Session, brand_id: int):
     return db.query(models.Brand).filter(models.Brand.id == brand_id, models.Brand.is_delete == 0).first()
