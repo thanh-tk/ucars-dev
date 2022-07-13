@@ -1,1 +1,38 @@
-# ucars-dev
+## Requirements
+### Create the following using
+- Fastapi for creating restful APIs
+- Postgresql  for data storage
+- Angular for frontend
+- Use git to track commit and track changes
+
+
+
+#### Backend
+* Create RESTful API to perform the following operations:
+- CRUD - for Car brand
+- CRUD - for Car models
+- Fetch all cars by brand name
+- Search car by keywords
+
+Basic field names: Name, Logo, Description, etc.
+#### Frontend
+* Create a page that can 
+- List Car brand
+- Search Car brand
+- Add a brand
+- Get a brand detail
+- Update brand detail
+- Delete brand detail
+**Figma :  
+https://www.figma.com/file/b3DQkzOpqyYpxkLpg5TO8N/Dev---Test?node-id=23%3A50585
+---
+#### Evaluation
+*Evaluation will be based on:
+- Schema design
+- Code readability & maintainability
+- Error handling
+- Version control (git)
+
+#### Bonus:
+- Dockerization
+- Test cases
