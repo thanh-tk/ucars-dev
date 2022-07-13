@@ -15,6 +15,7 @@
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    margin-block-end: 3em;
     button {
       margin-bottom: 12px;
       background-color:#323435;
@@ -40,9 +41,9 @@
     }
     .sidebar-container {
       background-color:#323435;
-      // li, ul, div{
-      //   background-color:#323435;
-      // }  
+      ::ng-deep .ant-menu-sub{
+        background-color:#323435;
+      }
       li {
         border-radius: 3px;
       }
