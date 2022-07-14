@@ -13,7 +13,6 @@ import { CarListComponent } from './Layout/car-list/car-list.component';
 @NgModule({
   declarations: [
     AppComponent,
-    CarListComponent,
   ],
   imports: [
     BrowserModule,

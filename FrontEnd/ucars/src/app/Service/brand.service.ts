@@ -8,11 +8,11 @@ const httpOptions ={
   headers:new HttpHeaders({'Content-Type':'Application/json'})
 }
 
-const API_URL = 'brands/';
-const API_URL_CREATE_BRAND = 'create-brand/';
-const API_URL_UPDATE_BRAND = 'update-brand/';
-const API_URL_DELETE_BRAND = 'delete-brand/';
-const API_URL_GET_BRAND = 'brand/';
+const API_URL = 'brand/brands/';
+const API_URL_CREATE_BRAND = 'brand/create-brand/';
+const API_URL_UPDATE_BRAND = 'brand/update-brand/';
+const API_URL_DELETE_BRAND = 'brand/delete-brand/';
+const API_URL_GET_BRAND = 'brand/brand/';
 
 
 @Injectable({

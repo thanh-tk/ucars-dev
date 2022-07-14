@@ -1,63 +1,99 @@
-<!-- <div>
-    <nz-list-item *ngFor="let item of fillterBrandList; index as i; let even = even" class="list-item"
-        [ngClass]="{ 'even-row' : even }">
-        <div nz-row nzJustify="space-between" nzAlign="middle" style="width: 100%">
-            <div nz-col nzSpan="1" class="check-col"><label nz-checkbox></label></div>
-            <div nz-col nzSpan="13" class="brand-info">
-                <div nz-row nzJustify="start" nzAlign="middle">
-                    <div nz-col class="brand-thumbnail">
-                        <nz-avatar [nzSize]="64" [nzShape]="'square'" nzIcon="car" nzSrc="{{item.logo}}"></nz-avatar>
-                    </div>
-                    <div nz-col>
-                        <nz-divider nzType="vertical" ngClass="logo-divider"></nz-divider>
-                    </div>
-                    <div nz-col class="brand-detail">
-                        <span ngClass="name">
-                            {{item.name}}
-                        </span>
-                        <div ngClass="brand-description">
-                            <span nz-typography nzType="secondary" ngClass="description" nzEllipsis nz-tooltip
-                                nzTooltipTitle="{{item.description }}" nzTooltipPlacement="bottom">
-                                {{item.description }}
-                            </span>
-                            <nz-divider nzType="vertical" ngClass="model-divider"></nz-divider>
-                            <span ngClass="models-quantity">{{item.models.length}} {{item.models.length > 1 ? 'Models' :
-                                'Model'}}</span>
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-            <div nz-col nzSpan="3" class="update-date">
-                <div nz-row nzJustify="space-between" nzAlign="middle">
-                    <div nz-col nzSpan="24">
-                        <span style="color: #2F465F">Last Update</span>
-                    </div>
-                    <div nz-col nzSpan="24">
-                        <span nz-typography nzType="secondary">
-                            {{item.last_update ? item.last_update : '-' }}
-                        </span>
-                    </div>
-                </div>
-            </div>
-            <div nz-col nzSpan="4" class="status">
-                <div *ngIf="item.status == 1; then active else inactive"></div>
-                <ng-template #active>
-                    <div nz-typography nzType="secondary" ngClass="active-indi">
-                        <span> Active</span>
-                    </div>
-                </ng-template>
-                <ng-template #inactive>
-                    <div nz-typography nzType="secondary" ngClass="inactive-indi">
-                        <span> InActive</span>
-                    </div>
-                </ng-template>
-            </div>
-            <div nz-col nzSpan="3" class="view-detail">
-                <button nz-button nzType="primary" nzSize="small" [routerLink]="'/brand/' + item.id">
-                    View Details
-                </button>
+<div nz-row class="header">
+    <div nz-col nzSpan="4">
+        <h2>CAR LIST</h2>
+    </div>
+    <div nz-col nzSpan="4" class="select-sort">
+        <a nz-dropdown nzTrigger="click" [nzDropdownMenu]="menu">
+            <i nz-icon nzType="down"></i>
+            {{currentSelect}}
+        </a>
+        <nz-dropdown-menu #menu="nzDropdownMenu">
+            <ul nz-menu>
+                <li nz-menu-item *ngFor="let item of sortList; index as i;" (click)="handleSort(item)">{{item}}
+                </li>
+            </ul>
+        </nz-dropdown-menu>
+    </div>
+    <div nz-col nzSpan="5" class="search">
+        <nz-input-group [nzPrefix]="prefixIconSearch">
+            <input type="text" #myInput nz-input placeholder="Search car brand" (input)="filterItem(myInput.value)"/>
+        </nz-input-group>
+        <ng-template #prefixIconSearch>
+            <i nz-icon nzType="search"></i>
+        </ng-template>
+    </div>
+    <!-- <div nz-col nzSpan="11" class="add-btn">
+        <button nz-button nzType="primary" nzSize="small" (click)="_AddBrand()">
+            <span>
+                <i nz-icon nzType="plus"></i>
+                Add Brand
+            </span>
+        </button>
+    </div> -->
+</div>
+<div class="list-container">
+    <nz-list>
+        <div *ngIf="fillterVehicleList.length === 0" class="empty-list">
+            <nz-divider nzType="horizontal"></nz-divider>
+            <div>  
+                <i nz-icon nzType="database" nzTheme="outline"></i>
+                <span>No Data</span>
             </div>
         </div>
-    </nz-list-item>
-</div> -->
+        <nz-list-item *ngFor="let item of fillterVehicleList; index as i; let even = even" class="list-item" [ngClass]="{ 'even-row' : even }">
+            <div nz-row nzJustify="space-between" nzAlign="middle" style="width: 100%">
+                <div nz-col nzSpan="13" class="brand-info">
+                    <div nz-row nzJustify="start" nzAlign="middle">
+                        <div nz-col class="brand-thumbnail">
+                            <!-- <nz-avatar [nzSize]="64" [nzShape]="'square'" nzIcon="car" nzSrc="{{item.logo}}"></nz-avatar> -->
+                        </div>
+                        <div nz-col ><nz-divider nzType="vertical" ngClass="logo-divider"></nz-divider></div>
+                        <div nz-col class="brand-detail">
+                            <span ngClass="name">
+                                {{item.name}}
+                            </span>
+                            <div ngClass="brand-description">
+                                <span nz-typography nzType="secondary" ngClass="description" nzEllipsis nz-tooltip nzTooltipTitle="{{item.description }}" nzTooltipPlacement="bottom">
+                                    {{item.description }}
+                                </span>
+                                <!-- <nz-divider nzType="vertical" ngClass="model-divider"></nz-divider> -->
+                                <!-- <span ngClass="models-quantity">{{item.models.length}} {{item.models.length > 1 ? 'Models' : 'Model'}}</span> -->
+                            </div>
+                        </div>
+                       
+                    </div>
+                </div>
+                <div nz-col  nzSpan="3" class="update-date" >
+                    <div nz-row nzJustify="space-between" nzAlign="middle">
+                        <div nz-col nzSpan="24">
+                            <span style="color: #2F465F">Last Update</span>
+                        </div>
+                        <div nz-col nzSpan="24">
+                            <span nz-typography nzType="secondary">
+                                {{item.last_update ? item.last_update : '-' }}
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div nz-col nzSpan="4" class="status">
+                    <!-- <div *ngIf="item.status == 1; then active else inactive"></div>
+                    <ng-template #active >
+                        <div nz-typography nzType="secondary" ngClass="active-indi">
+                           <span> Active</span>
+                        </div>
+                    </ng-template >
+                    <ng-template #inactive>
+                        <div nz-typography nzType="secondary" ngClass="inactive-indi">
+                            <span> InActive</span>
+                        </div>
+                    </ng-template > -->
+                </div>
+                <!-- <div nz-col nzSpan="3" class="view-detail">
+                    <button nz-button nzType="primary" nzSize="small" [routerLink]="'/brand/' + item.id" >
+                        View Details
+                    </button>
+                </div> -->
+            </div>
+        </nz-list-item>
+    </nz-list>
+</div>

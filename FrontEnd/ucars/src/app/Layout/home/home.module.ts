@@ -8,6 +8,7 @@ import { BrandListModule } from '../brand-list/brand-list.module';
 import { SidebarModule } from '../sidebar/sidebar.module';
 import { TobarModule } from '../topbar/topbar.module';
 import { HomeComponent } from './home.component';
+import { CarListModule } from '../car-list/car-list.module';
 
 @NgModule({
   declarations: [
@@ -19,6 +20,7 @@ import { HomeComponent } from './home.component';
     TobarModule,
     NgZorroAntdModule,
     BrandListModule,
+    CarListModule,
     SidebarModule,
   ],
   exports: [

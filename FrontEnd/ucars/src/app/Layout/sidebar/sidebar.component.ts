@@ -8,6 +8,8 @@ import { EventEmitter } from '@angular/core';
 })
 export class SidebarComponent {
   isCollapsed = false;
+
+  currentSelect = 0;
   @Output() sendDataToParent = new EventEmitter();
   
   toggleCollapsed(): void {
@@ -16,6 +18,10 @@ export class SidebarComponent {
   _sendDataToParent(data:string) {
     this.sendDataToParent.emit(data);
     this.toggleCollapsed()
+  }
+
+  navigating(idx: number){
+    this.currentSelect = idx;
   }
 }
 

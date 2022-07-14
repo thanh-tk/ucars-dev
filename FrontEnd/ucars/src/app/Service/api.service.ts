@@ -7,7 +7,7 @@ import { map } from 'rxjs/operators';
 })
 export class ApiService {
   
-  private REST_API_SERVER = 'http://localhost:8000/api/v1/brand/';
+  private REST_API_SERVER = 'http://localhost:8000/api/v1/';
 
   constructor(private httpClient: HttpClient) { }
 
@@ -28,4 +28,6 @@ export class ApiService {
       return res;
     }))
   }  
+
+
 }

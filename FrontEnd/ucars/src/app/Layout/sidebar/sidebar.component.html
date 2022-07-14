@@ -25,9 +25,14 @@
   <div class="navigator">
     <ul class="sidebar-container" nz-menu nzMode="inline" nzTheme="dark" [nzInlineCollapsed]="isCollapsed">
       <li nzShape="round" nz-menu-item nz-tooltip nzTooltipPlacement="right" [nzTooltipTitle]="isCollapsed ? 'Navigation One' : ''"
-        nzSelected>
+      [nzSelected]="currentSelect == 0 ? true : false">
         <i nz-icon nzType="car"></i>
-        <span><a [routerLink]="''"> Car Brand</a></span>
+        <span><a [routerLink]="''" (click)="navigating(0)" > Car Brand</a></span>
+      </li>
+      <li nzShape="round" nz-menu-item nz-tooltip nzTooltipPlacement="right" [nzTooltipTitle]="isCollapsed ? 'Navigation Two' : ''"
+        [nzSelected]="currentSelect == 1 ? true : false">
+        <i nz-icon nzType="car"></i>
+        <span><a [routerLink]="'cars/'" (click)="navigating(1)"> Car</a></span>
       </li>
       <li nz-submenu nzTitle="Folder" nzIcon="folder">
         <ul class="sub-item">
