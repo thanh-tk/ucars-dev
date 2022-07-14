@@ -48,17 +48,3 @@ class CarCondition(Base):
     __tablename__ = 'vehicle_condition'
     id = Column("ID", Integer, primary_key=True, index=True, autoincrement=True)
     name = Column("NAME", String, unique=false)
-
-class CarByBrand(Base):
-    __table__ = Table('car_brand_list', Base.metadata, Column('ID', Integer, primary_key=True), autoload_with=Database.engine)
-    # id = Column("ID", Integer, primary_key=True, index=True, autoincrement=True)
-    #name = Column("NAME", String, unique=false)
-    # year = Column("YEAR", Integer, unique=false)
-    # price = Column("PRICE", Numeric)
-    # description = Column("DESCRIPTION", Text)
-    # update_at = Column("UPDATE_AT", DateTime)
-    # create_at = Column("CREATE_AT", DateTime)
-    # is_delete = Column("IS_DELETE", Integer)
-    # logo = Column("LOGO", LargeBinary)
-    # brand_name = Column("BRAND_NAME", String)
-    # model_name = Column("MODEL_NAME", String)
