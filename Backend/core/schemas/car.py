@@ -15,3 +15,16 @@ class Car(CarBase):
     id: int
     class Config:
         orm_mode = True
+
+class CarByBrand(BaseModel):
+    id: int
+    # NAME: str
+    # YEAR: str
+    # PRICE: decimal.Decimal
+    # description: Optional[str] = None
+    # logo: bytes
+    # brand_name: str
+    # model_name: str
+class CarView(CarByBrand):
+    class Config:
+        orm_mode = True

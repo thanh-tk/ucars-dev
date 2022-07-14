@@ -1,6 +1,6 @@
 import sqlalchemy as sa
 from core.models import models
-from core.schemas import schemas
+from core.schemas import brand
 from sqlalchemy.orm import Session
 from fastapi import  HTTPException, status
 
@@ -10,7 +10,7 @@ def get_Brand(db: Session, brand_id: int):
 def get_Brands(db: Session, skip: int = 0, limit: int = 100):
     return db.query(models.Brand).filter(models.Brand.is_delete == 0).all()
 
-def create_Brand(session: Session, brand: schemas.BrandRequest):
+def create_Brand(session: Session, brand: brand.BrandRequest):
     try:
         session.execute(sa.text("CALL public.\"brand_Create\"( :param1, :param2, :param3, :param4)"), {
         "param1": brand.name, 
@@ -27,7 +27,7 @@ def create_Brand(session: Session, brand: schemas.BrandRequest):
 
     return f"created brand item with name {name} Successfully"
 
-def update_Brand(session: Session, brand: schemas.BrandUpdateRequest):
+def update_Brand(session: Session, brand: brand.BrandUpdateRequest):
     try:
         session.execute(sa.text("CALL public.\"pro_brand_update\"( :param1, :param2, :param3, :param4, :param5)"), {
         "param1": brand.id, 
@@ -45,7 +45,7 @@ def update_Brand(session: Session, brand: schemas.BrandUpdateRequest):
 
     return f"Update brand item with name {brand.name} Successfully"
 
-def delete_brand(session: Session, brand: schemas.BrandDeleteRequest):
+def delete_brand(session: Session, brand: brand.BrandDeleteRequest):
     try:
         session.execute(sa.text("CALL public.\"pro_brand_delete\"( :param1)"), {"param1": brand.id})
         

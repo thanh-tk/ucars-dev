@@ -1,6 +1,8 @@
-from sqlalchemy import Boolean, Column, DateTime, ForeignKey, Integer, LargeBinary, Numeric, String, Text, false
+import decimal
+from sqlalchemy import Boolean, Column, DateTime, ForeignKey, Integer, LargeBinary, Numeric, String, Table, Text, false
 from sqlalchemy.orm import relationship
 from core.database.database import Base
+import core.database.database as Database
 
 class Brand(Base):
     __tablename__ = 'brand'
@@ -28,6 +30,7 @@ class Model(Base):
 
 class Vehicle(Base):
     __tablename__ = 'vehicle'
+    __table_args__ = {'extend_existing': True}
     id = Column("ID", Integer, primary_key=True, index=True, autoincrement=True)
     name = Column("NAME", String, unique=false)
     year = Column("YEAR", Integer, unique=false)
@@ -45,3 +48,17 @@ class CarCondition(Base):
     __tablename__ = 'vehicle_condition'
     id = Column("ID", Integer, primary_key=True, index=True, autoincrement=True)
     name = Column("NAME", String, unique=false)
+
+class CarByBrand(Base):
+    __table__ = Table('car_brand_list', Base.metadata, Column('ID', Integer, primary_key=True), autoload_with=Database.engine)
+    # id = Column("ID", Integer, primary_key=True, index=True, autoincrement=True)
+    #name = Column("NAME", String, unique=false)
+    # year = Column("YEAR", Integer, unique=false)
+    # price = Column("PRICE", Numeric)
+    # description = Column("DESCRIPTION", Text)
+    # update_at = Column("UPDATE_AT", DateTime)
+    # create_at = Column("CREATE_AT", DateTime)
+    # is_delete = Column("IS_DELETE", Integer)
+    # logo = Column("LOGO", LargeBinary)
+    # brand_name = Column("BRAND_NAME", String)
+    # model_name = Column("MODEL_NAME", String)
