@@ -9,20 +9,20 @@
 
 #### Backend
 * Create RESTful API to perform the following operations:
-[x] CRUD - for Car brand
-[x] CRUD - for Car models
-[-] Fetch all cars by brand name
-[-] Search car by keywords
+- [x] CRUD - for Car brand
+- [x] CRUD - for Car models
+- Fetch all cars by brand name
+- Search car by keywords
 
 Basic field names: Name, Logo, Description, etc.
 #### Frontend
 * Create a page that can 
-[x] List Car brand
-[x] Search Car brand
-[x] Add a brand
-[x] Get a brand detail
-[x] Update brand detail
-[x] Delete brand detail
+- [x] List Car brand
+- [x] Search Car brand
+- [x] Add a brand
+- [x] Get a brand detail
+- [x] Update brand detail
+- [X] Delete brand detail
 
 **Figma :  
 https://www.figma.com/file/b3DQkzOpqyYpxkLpg5TO8N/Dev---Test?node-id=23%3A50585
