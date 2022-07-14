@@ -1,4 +1,4 @@
-import { NgZorroAntdModule } from 'src/app/ng-zorro-antd-module.module';
+import { NgZorroAntdModule } from 'src/app/utils/ng-zorro-antd-module.module';
 
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
