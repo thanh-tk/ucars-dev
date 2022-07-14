@@ -17,3 +17,13 @@ router = APIRouter()
 def search_cars(db: Session = Depends(get_db)):
     cars = car_crud.get_Vehicles(db)
     return cars
+
+@router.get("/vehicle/", response_model=car.Car)
+def search_car(id: int, db: Session = Depends(get_db)):
+    cars = car_crud.get_Vehicle(id, db)
+    return cars
+
+@router.get("/vehicle-by-brand/", response_model=list[car.Car])
+def search_car(brand: str, db: Session = Depends(get_db)):
+    cars = car_crud.get_Vehicle_By_Brand(brand, db)
+    return cars

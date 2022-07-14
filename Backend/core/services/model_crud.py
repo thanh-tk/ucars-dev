@@ -1,10 +1,10 @@
 from fastapi import  HTTPException, status
 from sqlalchemy.orm import Session
-from core.schemas import schemas
+from core.schemas import model
 import sqlalchemy as sa
 from core.models import models
 
-def create_Model(session: Session, Model: schemas.ModelCreateRequest):
+def create_Model(session: Session, Model: model.ModelCreateRequest):
     try:
         session.execute(sa.text("CALL public.\"proc_models_create\"( :param1, :param2, :param3, :param4)"), {
         "param1": Model.name, 
@@ -27,7 +27,7 @@ def get_model(db: Session, model_id: int):
 def get_models(db: Session, skip: int = 0, limit: int = 100):
     return db.query(models.Model).filter(models.Model.is_delete == 0).all()
 
-def update_Model(session: Session, Model: schemas.ModelUpdateRequest):
+def update_Model(session: Session, Model: model.ModelUpdateRequest):
     try:
         session.execute(sa.text("CALL public.\"proc_models_update\"( :param1, :param2, :param3, :param4, :param5)"), {
         "param1": Model.id, 
@@ -45,7 +45,7 @@ def update_Model(session: Session, Model: schemas.ModelUpdateRequest):
 
     return f"Update Model item with name {Model.name} Successfully"
 
-def delete_Model(session: Session, Model: schemas.ModelDeleteRequest):
+def delete_Model(session: Session, Model: model.ModelDeleteRequest):
     try:
         session.execute(sa.text("CALL public.\"proc_models_delete\"( :param1)"), {"param1": Model.id})
         

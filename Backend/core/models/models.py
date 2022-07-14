@@ -1,6 +1,8 @@
-from sqlalchemy import Boolean, Column, DateTime, ForeignKey, Integer, LargeBinary, Numeric, String, Text, false
+import decimal
+from sqlalchemy import Boolean, Column, DateTime, ForeignKey, Integer, LargeBinary, Numeric, String, Table, Text, false
 from sqlalchemy.orm import relationship
 from core.database.database import Base
+import core.database.database as Database
 
 class Brand(Base):
     __tablename__ = 'brand'
@@ -28,6 +30,7 @@ class Model(Base):
 
 class Vehicle(Base):
     __tablename__ = 'vehicle'
+    __table_args__ = {'extend_existing': True}
     id = Column("ID", Integer, primary_key=True, index=True, autoincrement=True)
     name = Column("NAME", String, unique=false)
     year = Column("YEAR", Integer, unique=false)
