@@ -34,6 +34,13 @@
     </div>
     <div class="list-container">
         <nz-list>
+            <div *ngIf="fillterBrandList.length === 0" class="empty-list">
+                <nz-divider nzType="horizontal"></nz-divider>
+                <div>  
+                    <i nz-icon nzType="database" nzTheme="outline"></i>
+                    <span>No Data</span>
+                </div>
+            </div>
             <nz-list-item *ngFor="let item of fillterBrandList; index as i; let even = even" class="list-item" [ngClass]="{ 'even-row' : even }">
                 <div nz-row nzJustify="space-between" nzAlign="middle" style="width: 100%">
                     <div nz-col nzSpan="1" class="check-col"><label nz-checkbox></label></div>
@@ -52,7 +59,7 @@
                                         {{item.description }}
                                     </span>
                                     <nz-divider nzType="vertical" ngClass="model-divider"></nz-divider>
-                                    <span ngClass="models-quantity">{{item.models.length}} Models</span>
+                                    <span ngClass="models-quantity">{{item.models.length}} {{item.models.length > 1 ? 'Models' : 'Model'}}</span>
                                 </div>
                             </div>
                            
@@ -144,21 +151,23 @@
                         <div nz-col nzSpan="24">
                                 <div nz-row>
                                     <div nz-col nzSpan="12">
-                                        <nz-form-label nzFor="name">Brand Name</nz-form-label>
+                                        <nz-form-label nzFor="name" nzNoColon nzRequired>Brand Name</nz-form-label>
                                         <nz-form-item>
-                                            <nz-form-control [nzSpan]="14">
-                                            <input nz-input name="name" type="name" id="name" placeholder="Input Content" formControlName="name">
+                                            <nz-form-control [nzSpan]="14" [nzValidateStatus]="!validateName ? 'error' : 'success'">
+                                            <input nz-input name="name" type="name" id="name" placeholder="Input Content" formControlName="name" >
                                             </nz-form-control>
                                         </nz-form-item >
                                     </div>
                                     <div nz-col nzSpan="12">
                                         <div ngClass="form-status">
-                                            <nz-form-label nzFor="name">Brand Status</nz-form-label>
+                                            <nz-form-label nzFor="status" nzNoColon>Brand Status</nz-form-label>
                                             <nz-form-item>
-                                                <nz-select name="status" [ngModel]="statusList[1]" 
-                                                nzBorderless nzAllowClear 
+                                                <nz-select name="status" 
+                                                [ngModel]="form.value.status ? form.value.status : 0" 
+                                                nzBorderless 
                                                 [nzCustomTemplate]="defaultTemplate" 
                                                 id="status" 
+                                                nzAllowClear="false"
                                                 formControlName="status"
                                                 [nzCustomTemplate]="defaultTemplate" 
                                                 [ngClass]="form.value.status === 1 ? 'active' : 'inactive'"
@@ -187,7 +196,7 @@
                         <div nz-col nzSpan="24">
                             <div nz-row>
                                 <div nz-col nzSpan="24">
-                                    <nz-form-label nzFor="description">Brand Description</nz-form-label>
+                                    <nz-form-label nzFor="description" nzNoColon>Brand Description</nz-form-label>
                                     <nz-form-item>
                                         <nz-form-control>
                                             <textarea nz-input 

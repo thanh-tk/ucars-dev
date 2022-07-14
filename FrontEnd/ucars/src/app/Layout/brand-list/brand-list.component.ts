@@ -26,7 +26,7 @@ export class BrandListComponent implements OnInit {
   currentSelect: string = '';
   createModal: boolean = false;
   updateModal: boolean = false;
-  
+  validateName = true;
   loading = false;
   avatarUrl?: string
   previewImage: string | undefined = '';
@@ -50,7 +50,7 @@ export class BrandListComponent implements OnInit {
     });
     this._service.getBrands()
       .subscribe(data => {
-        this.brandList = (data as brand[]);//.map((item) => {return {...item, logo: this._sanitizer.bypassSecurityTrustResourceUrl(item.logo).toString()}});
+        this.brandList = (data as brand[]);
 
         this.fillterBrandList= data as brand[];
       });
@@ -62,6 +62,13 @@ export class BrandListComponent implements OnInit {
   }
 
   _AddBrand(){
+    this.avatarUrl = '';
+    this.form = this._fb.group({
+      name: '',
+      description: '',
+      logo: '',
+      status: '',
+    });
     this.createModal = true;
   }
 
@@ -85,9 +92,15 @@ export class BrandListComponent implements OnInit {
 
   handleSubmit(){
     let b = {...this.form?.value, logo: this.avatarUrl};
-
+    if(b.name === ''){
+      this.validateName = false;
+      this.message.error('Please enter brand name!', {
+        nzDuration: 10000
+      });
+      return;
+    }
     this._service.createBrand(b);
-    this.message.error('Brand Create Successfully!', {
+    this.message.success('Brand Create Successfully!', {
       nzDuration: 10000
     });
   }
@@ -111,7 +124,7 @@ export class BrandListComponent implements OnInit {
       case 'Last Updated':
         return inData.sort((a, b) => (a.last_update) < (new Date(b.last_update)) ? 1 : -1 )
       case 'Brand Name':
-        return inData.sort((a, b) => a.name.localeCompare(b.name) ? 1 : -1)
+        return inData.sort((a, b) => a.name.localeCompare(b.name))
       case 'Number of Models':
         return inData.sort((a, b) => a.models.length < b.models.length ? 1 : -1 ) 
       default:
@@ -122,6 +135,7 @@ export class BrandListComponent implements OnInit {
   new Observable((observer: Observer<boolean>) => {
     const isJpgOrPng = file.type === 'image/jpeg' || file.type === 'image/png';
     if (!isJpgOrPng) {
+     
       this.message.error('You can only upload JPG file!', {
         nzDuration: 10000
       });

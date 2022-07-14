@@ -19,6 +19,7 @@ export class BrandUpdateComponent implements OnInit {
   @Input() showModal: boolean = false;
   @Output() hideModal = new EventEmitter();
 
+  validateName = true;
   loading = false;
   isEdit = false;
   avatarUrl?: string
@@ -77,9 +78,15 @@ export class BrandUpdateComponent implements OnInit {
 
   handleSubmit(){
     let b = {...this.form?.value, logo: this.avatarUrl ?? this.data.logo, id: this.data.id};
-
+    if(b.name === ''){
+      this.validateName = false;
+      this.message.error('Please enter brand name!', {
+        nzDuration: 10000
+      });
+      return;
+    }
     this._service.updateBrand(b);
-    this.message.success('Brand Create Successfully!', {
+    this.message.success('Brand Update Successfully!', {
       nzDuration: 10000
     });
     this.isEdit = false;
