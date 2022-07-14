@@ -46,7 +46,7 @@
                 <div nz-col nzSpan="24">
                         <div nz-row>
                             <div nz-col nzSpan="12">
-                                <nz-form-label nzFor="name" nzNoColon nzRequired>Brand Name</nz-form-label>
+                                <nz-form-label nzFor="name" nzNoColon [nzRequired]="isEdit ? true : false">Brand Name</nz-form-label>
                                 <div *ngIf="!isEdit" ngClass="preview-field">{{data.name}}</div>
                                 <nz-form-item *ngIf="isEdit">
                                     <nz-form-control [nzSpan]="14" [nzValidateStatus]="!validateName ? 'error' : 'success'">
