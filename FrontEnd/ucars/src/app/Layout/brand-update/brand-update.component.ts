@@ -85,6 +85,13 @@ export class BrandUpdateComponent implements OnInit {
       });
       return;
     }
+    if(b.name.length > 128){
+      this.validateName = false;
+      this.message.error('Brand name too long!', {
+        nzDuration: 10000
+      });
+      return;
+    }
     this._service.updateBrand(b);
     this.message.success('Brand Update Successfully!', {
       nzDuration: 10000

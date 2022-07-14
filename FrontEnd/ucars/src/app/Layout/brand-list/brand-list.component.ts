@@ -77,7 +77,6 @@ export class BrandListComponent implements OnInit {
   }
   
   handleOkCreateModal(){
-    let b = this.form?.value;
     this.createModal = false;
   }
   handleCancelUpdateModal(){
@@ -99,10 +98,24 @@ export class BrandListComponent implements OnInit {
       });
       return;
     }
+    if(b.name.length > 128){
+      this.validateName = false;
+      this.message.error('Brand name too long!', {
+        nzDuration: 10000
+      });
+      return;
+    }
     this._service.createBrand(b);
     this.message.success('Brand Create Successfully!', {
       nzDuration: 10000
     });
+    this._service.getBrands()
+      .subscribe(data => {
+        this.brandList = (data as brand[]);
+
+        this.fillterBrandList= data as brand[];
+      });
+    this.handleOkCreateModal();
   }
 
   filterItem(value: string){
