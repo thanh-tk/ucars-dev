@@ -1,3 +1,26 @@
+.header{
+    align-items: baseline;
+    margin-block-end: 1em;
+    h2{
+        font-weight: 600;
+    }
+    .select-sort{
+       a {
+           color: #232323;
+           .anticon {
+            margin-right: 17px;
+           }
+       } 
+    }
+    .search{
+        .ant-input-affix-wrapper {
+            border-radius: 15px;
+            ::ng-deep .ant-input-prefix {
+                margin-right: 10px;
+            }
+        }
+    }
+}
 .list-container{
     max-height: 80vh;
     overflow-y: auto;
