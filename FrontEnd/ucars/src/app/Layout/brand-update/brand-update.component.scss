@@ -11,18 +11,9 @@
             }
           }
         margin-block-end: 36px;
-        // ::ng-deep .ant-upload-select-picture-card:hover::before{
-        //     content: "";
-        //     width: 120px !important;
-        //     animation: fade-in 0.2s cubic-bezier(0.390, 0.575, 0.565, 1.000) both;
-        //     height: 120px !important;
-        //     background: #232323;
-        //     z-index: 1;
-        //     position: absolute;
-        //     left: 0;
-        //     border-radius: 50%;
-        //     visibility: visible;
-        // }
+        ::ng-deep .ant-upload-select-picture-card:hover{
+            border-color: transparent;
+        }
         .logo-content{
             .upload-btn{
                 opacity: 0;
@@ -47,6 +38,7 @@
             height: 120px;
             // background: #FAFAFA;
             border-radius: 50%;
+            border-color: transparent;
             div{
                 display: flex;
                 justify-content: center;
