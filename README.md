@@ -37,3 +37,6 @@ https://www.figma.com/file/b3DQkzOpqyYpxkLpg5TO8N/Dev---Test?node-id=23%3A50585
 #### Bonus:
 - Dockerization
 - Test cases
+
+#### ERD
+![Untitled](https://user-images.githubusercontent.com/85480357/178901150-cf6333cc-a3e4-4632-b611-189f2ea0f68c.png)
